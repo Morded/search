@@ -1,3 +1,4 @@
+import { FiVolume2, FiList } from "react-icons/fi";
 
 type DefinitionCardProps = {
   definition: string;

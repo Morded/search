@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import axios from "axios";
 import { useState, useRef } from "react";
 import DefinitionCard from "../components/definitioncard";
+import { FiSearch, FiType } from "react-icons/fi";
 
 const Home: NextPage = () => {
   const [results, setResults] = useState<any>([]);
@@ -40,16 +41,17 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <div className="my-20">
-        <h3 className="text-lg text-center">
+      <div className="my-20 flex flex-col gap-2 items-center text-white">
+        <FiType className="text-3xl font-bold" />
+        <h3 className="text-lg text-center ">
           Search for a word
         </h3>
-        <div className="m-2"></div>
 
-        <form className="grid" onSubmit={handleSearch}>
-          <input className="text-black px-2 py-1 rounded" autoFocus ref={searchRef} type="search" />
-          <div className="m-1"></div>
-          <button className="w-auto uppercase py-1 font-extrabold border-2 border-teal-500 text-teal-500 rounded duration-501 motion-safe:hover:scale-105">Search</button>
+        <form className="flex flex-row shadow-md" onSubmit={handleSearch}>
+          <input className="px-4 py-1 rounded-l-3xl bg-slate-700" autoFocus ref={searchRef} type="search" />
+          <button className="w-auto uppercase py-3 px-6 font-extrabold bg-slate-700 rounded-r-3xl hover:bg-slate-600 transition-all duration-300 ease-in-out">
+            <FiSearch />
+          </button>
         </form>
       </div>
 
