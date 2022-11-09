@@ -6,7 +6,7 @@ import { FiSearch, FiType } from "react-icons/fi";
 
 const Home: NextPage = () => {
   const [results, setResults] = useState<any>([]);
-  const [noResult, setNoResult] = useState(false);
+  const [noResult, setNoResult] = useState<boolean>();
   const searchRef = useRef<HTMLInputElement>(null);
 
   async function fetchData() {
@@ -76,7 +76,7 @@ const Home: NextPage = () => {
         </div>
       }
 
-      {!noResult &&
+      {noResult === false &&
         <>
           <div className="m-3"></div>
           <div className="text-2xl p-2 font-extrabold text-center text-[#52728a]">Definition cards</div>
