@@ -1,14 +1,15 @@
 import type { NextPage } from "next";
 import axios from "axios";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import DefinitionCard from "../components/definitioncard";
 import { FiSearch, FiType } from "react-icons/fi";
 
 const Home: NextPage = () => {
   const [results, setResults] = useState<any>([]);
+  const [noResult, setNoResult] = useState(false);
   const searchRef = useRef<HTMLInputElement>(null);
 
-  const fetchData = () => {
+  async function fetchData() {
     const options = {
       method: 'GET',
       headers: {
@@ -22,14 +23,17 @@ const Home: NextPage = () => {
       options.url += searchRef.current.value;
       setResults([]);
 
-      axios.request(options)
+      await axios.request(options)
         .then(function(response) {
           setResults(response.data);
+          setNoResult(false);
           console.log(response.data);
         })
         .catch(function(error) {
           console.error(error);
+          setNoResult(true);
         });
+
     }
   }
 
@@ -54,6 +58,11 @@ const Home: NextPage = () => {
           </button>
         </form>
       </div>
+
+      {
+        noResult &&
+        <div className="text-2xl"><span className="font-bold text-[#52728a]">No results</span> 😿</div>
+      }
 
       {
         results.syllables &&
