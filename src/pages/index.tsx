@@ -76,24 +76,27 @@ const Home: NextPage = () => {
         </div>
       }
 
-      <div className="">
-        <div className="m-3"></div>
-        <div className="grid gap-4 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
-          {
-            results?.results?.map((result: { index: number; definition: string; partOfSpeech: string; synonyms: []; examples: [] }) => (
-              <>
-                <DefinitionCard
-                  key={result.index}
-                  definition={result.definition}
-                  partOfSpeech={result.partOfSpeech}
-                  synonyms={result.synonyms}
-                  examples={result.examples}
-                />
-              </>
-            ))
-          }</div>
-        <div className="p-4"></div>
-      </div>
+      {!noResult &&
+        <>
+          <div className="m-3"></div>
+          <div className="text-2xl p-2 font-extrabold text-center text-[#52728a]">Definition cards</div>
+          <div className="grid gap-4 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+            {
+              results?.results?.map((result: { index: number; definition: string; partOfSpeech: string; synonyms: []; examples: [] }) => (
+                <>
+                  <DefinitionCard
+                    key={result.index}
+                    definition={result.definition}
+                    partOfSpeech={result.partOfSpeech}
+                    synonyms={result.synonyms}
+                    examples={result.examples}
+                  />
+                </>
+              ))
+            }</div>
+          <div className="p-4"></div>
+        </>
+      }
 
     </>
   );
