@@ -61,7 +61,7 @@ const Home: NextPage = () => {
 
       {
         noResult &&
-        <div className="text-2xl"><span className="font-bold text-[#52728a]">No results</span> 😿</div>
+        <div className="text-2xl"><span className="font-bold text-[#52728a]">No result</span> 😿</div>
       }
 
       {
