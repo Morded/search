@@ -9,7 +9,7 @@ const Home: NextPage = () => {
   const searchRef = useRef<HTMLInputElement>(null);
 
   const fetchData = () => {
-    let options = {
+    const options = {
       method: 'GET',
       headers: {
         'X-RapidAPI-Key': '27521e08ecmsh0900ed67d647ad5p1d09adjsn59e3351cf823',
