@@ -4,17 +4,26 @@ import { useState, useRef, useEffect } from "react";
 import DefinitionCard from "../components/definitioncard";
 import { FiSearch, FiType } from "react-icons/fi";
 
+function getStaticProps() {
+  return {
+    key: process.env.NEXT_PUBLIC_KEY,
+    host: process.env.NEXT_PUBLIC_HOST,
+  }
+}
+
 const Home: NextPage = () => {
   const [results, setResults] = useState<any>([]);
   const [noResult, setNoResult] = useState<boolean>();
   const searchRef = useRef<HTMLInputElement>(null);
 
+  const env = getStaticProps();
+
   async function fetchData() {
     const options = {
       method: 'GET',
       headers: {
-        'X-RapidAPI-Key': '27521e08ecmsh0900ed67d647ad5p1d09adjsn59e3351cf823',
-        'X-RapidAPI-Host': 'wordsapiv1.p.rapidapi.com'
+        'X-RapidAPI-Key': env.key,
+        'X-RapidAPI-Host': env.host
       },
       url: 'https://wordsapiv1.p.rapidapi.com/words/',
     };
@@ -65,14 +74,18 @@ const Home: NextPage = () => {
       }
 
       {
-        results.syllables &&
+        results.syllables && results.pronunciation &&
         <div className="text-2xl text-center font-extrabold text-[#52728a]">
-          <p className="mb-2">
-            Syllables: {results.syllables?.list.join(' - ')}
-          </p>
-          <p className="mb-4">
-            Pronunciation: {results.pronunciation?.all}
-          </p>
+          {results.syllables &&
+            <p className="mb-2">
+              Syllables: {results.syllables?.list.join(' - ')}
+            </p>
+          }
+          {results.pronunciation &&
+            <p className="mb-4">
+              Pronunciation: {results.pronunciation?.all}
+            </p>
+          }
         </div>
       }
 
