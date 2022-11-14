@@ -6,8 +6,8 @@ import { FiSearch, FiType } from "react-icons/fi";
 
 function getStaticProps() {
   return {
-    key: process.env.NEXT_PUBLIC_KEY,
-    host: process.env.NEXT_PUBLIC_HOST,
+    key: process.env.KEY,
+    host: process.env.HOST,
   }
 }
 
