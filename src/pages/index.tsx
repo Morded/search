@@ -1,29 +1,21 @@
 import type { NextPage } from "next";
 import axios from "axios";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import DefinitionCard from "../components/definitioncard";
 import { FiSearch, FiType } from "react-icons/fi";
-
-function getStaticProps() {
-  return {
-    key: process.env.KEY,
-    host: process.env.HOST,
-  }
-}
+import { env } from '../env/client.mjs'
 
 const Home: NextPage = () => {
   const [results, setResults] = useState<any>([]);
   const [noResult, setNoResult] = useState<boolean>();
   const searchRef = useRef<HTMLInputElement>(null);
 
-  const env = getStaticProps();
-
   async function fetchData() {
     const options = {
       method: 'GET',
       headers: {
-        'X-RapidAPI-Key': env.key,
-        'X-RapidAPI-Host': env.host
+        'X-RapidAPI-Key': env.NEXT_PUBLIC_KEY,
+        'X-RapidAPI-Host': env.NEXT_PUBLIC_HOST
       },
       url: 'https://wordsapiv1.p.rapidapi.com/words/',
     };
